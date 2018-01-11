@@ -1,5 +1,5 @@
 #pragma once
-#include <iostream>
+#include <string>
 
 using namespace std;
 
@@ -16,7 +16,7 @@ public:
 	bool isEmpty();
 	void read(string str);
 	void print(string x, string i);
-	void evaulate(string x);
+	void calculate(string x);
 	double top();
 
 private:
