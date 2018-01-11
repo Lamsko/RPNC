@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "RPNC.h"
 #include <iostream>
+#include <sstream>
 
 using namespace std;
 
@@ -54,10 +55,42 @@ void RPNC::read(string str)
 	{
 		push(num);
 	}
+	else if (istringstream(str) >> c)
+	{
+		calculate(str);
+	}
+	else
+	{
+		cerr << "Niepoprawna skladnia" << endl;
+		return;
+	}
 }
 
 void RPNC::print(string x, string i)
 {
+	RPNC calc;
+	if (t == 1)
+	{
+		z++;
+		cout << endl;
+		cout << "Krok: " << z << ' ' << i << " uzyty operator : " << top() << endl;
+		cout << endl;
+	}
+	else
+	{
+		while (t != 1)
+		{
+			z++;
+			cout << "Krok: " << z << ' ' << i << " uzyty operator : " << top() << endl;
+			calc.push(top());
+			pop();
+		}
+		while (!calc.isEmpty())
+		{
+			push(calc.top());
+			calc.pop();
+		}
+	}
 }
 
 void RPNC::calculate(string x)
