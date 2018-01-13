@@ -73,7 +73,7 @@ void RPNC::print(string x, string i)
 	{
 		z++;
 		cout << endl;
-		cout << "Krok: " << z << ' ' << i << " uzyty operator : " << top() << endl;
+		cout << "Krok" << z << ' ' << i << " wynik: " << top() << endl;
 		cout << endl;
 	}
 	else
@@ -81,7 +81,7 @@ void RPNC::print(string x, string i)
 		while (t != 1)
 		{
 			z++;
-			cout << "Krok: " << z << ' ' << i << " uzyty operator : " << top() << endl;
+			cout << "Krok" << z << ' ' << i << " wynik: " << top() << endl;
 			calc.push(top());
 			pop();
 		}
@@ -95,6 +95,45 @@ void RPNC::print(string x, string i)
 
 void RPNC::calculate(string x)
 {
+	string s;
+
+	double temp1, temp2;
+	
+	temp2 = top();
+	pop();
+	temp1 = top();
+	pop();
+
+	if (x == "+")
+	{
+		double result;
+		result = temp1 + temp2;
+		push(result);
+		s = "dodawanie";
+	}
+	if (x == "-")
+	{
+		double result;
+		result = temp1 - temp2;
+		push(result);
+		s = "odejmowanie";
+	}
+	if (x == "*")
+	{
+		double result;
+		result = temp1 * temp2;
+		push(result);
+		s = "mnozenie";
+	}
+	if (x == "/")
+	{
+		double result;
+		result = temp1 / temp2;
+		push(result);
+		s = "dzielenie";
+	}
+
+	print(x, s);
 }
 
 double RPNC::top()
@@ -104,4 +143,13 @@ double RPNC::top()
 
 void Start::startCalculator()
 {
+	cout << "Kalkulator (odwrocona notacja polska)." << endl;
+	cout << endl;
+	cout << "Podaj dzialanie: " << endl;
+
+	while (true)
+	{
+		cin >> txt;
+		stack.read(txt);
+	}
 }
